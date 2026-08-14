@@ -147,106 +147,26 @@ function displayTimeStopwatch(elapsedTime) {
 
 // ===== FORMAT & DISPLAY =====
 function formatTime(elapsedTime) {
-// isi dari komando di fungsi displayTimeStopwatch(elapsedTime) agar stopwatch jalan atau tereksekusi di layar 
 
-    // ===== PENJELASAN PERHITUNGAN WAKTU: =====
+    // perhitungan waktu detik, menit, jam, dan hari dari total waktu yang sudah berjalan (elapsedTime)
+    const secStopwatch = Math.floor(elapsedTime / 1000),
+          minStopwatch = Math.floor(secStopwatch / 60),
+          hourStopwatch = Math.floor(minStopwatch / 60),
+          dayStopwatch = Math.floor(hourStopwatch / 24)
+    ;
 
-    // method Math.floor() 
-    // itu buat pembulatan ke bawah
-    // jadi angkanya kagak desimal jelek.
-
-    // const msStopwatch = Math.floor((elapsedTime % 1000) / 10);
-    // msStopwatch = milisekon (dibagi 10 biar jadi 2 digit, misal 500ms => 5)
-
-    const secStopwatch = Math.floor(elapsedTime / 1000);
-    // secStopwatch = detik (dibagi 1000, karena 1000ms = 1 detik)
-
-    const minStopwatch = Math.floor(secStopwatch / 60);
-    // minStopwatch = menit (dibagi 60, karena 60 detik = 1 menit)
-
+    // format dasar stopwatch
+    let formatStopwatch = `${String(hourStopwatch % 24).padStart(2, '0')}:${String(minStopwatch % 60).padStart(2, '0')}:${String(secStopwatch % 60).padStart(2, '0')}`;
     
-    const hourStopwatch = Math.floor(minStopwatch / 60);
-    // hourStopwatch = jam (dibagi 60, karena 60 menit = 1 jam)
-
-
-    const dayStopwatch = Math.floor(hourStopwatch / 24);
-    // dayStopwatch = hari (dibagi 24, karena 24 jam = 1 hari)
-
-    // ===== PENJELASAN `${String().padStart(2, '0')}` =====
-    // `` = backticks, 
-    // itu buat template literal,
-    // biar kita bisa masukin variabel langsung ke string
-
-    // ${} = placeholder
-    // buat akses si variabel tamplatenya
-    // biar bisa muncul di layar 🖥️
-
-    // String(): ubah angka jadi teks
-    // MANK GXX BISA LANGSUNG UBAH DARI ELEMENT DIATAS?! :<
-    // kagak. makanya kudu pake string.
-
-    // GEGARA APH?
-    // karena .padStart() itu method yg cuma nerima text. 
-    // Terus fungsi buat nambahin karakter di depan string, 
-    // biar panjangnya sesuai yang kita mau. 
-    // Jadi, karena pengen tampilannya 00 alias selalu dua angka
-    // makanya 2, '0' artinya kalau nilainya 
-    // satu digit, misal 1s, tampilannya 01 s
-    // Juga thats why '0' pake "" atau '' karena dia itu kutipan untuk text
-
-    // ===== PENJELASAN FORMAT: =====
-
-    // let formatStopwatch = `${String(minStopwatch % 60).padStart(2, '0')}:${String(secStopwatch % 60).padStart(2, '0')}.${String(msStopwatch).padStart(2, '0')}`;
-    let formatStopwatch = `${String(hourStopwatch % 24).padStart(2, '0')}:${String(minStopwatch % 60).padStart(2, '0')}:${String(secStopwatch % 60).padStart(2, '0')}`
-    // variabel ini merupakan mandor atau arahan utama dari stopwatch agar tampilannya ga ngaco
-    // format dasar (menit) mm:ss.ms (%60 = sisa bagi dengan variable di depannya (minStopwatch atau secStopwatch), biar pas udh 60 menit pas ganti balik 00)
-    // tapi reset (00:00) dan menambah format jam (tp format jam belum dibuat dan kalau ga dibuat bakal balik ke menit 00)
-    // makanya, dibuatlah, rumus berikut;
-
-    // let miliStopwatch = `${String(msStopwatch).padStart(2, '0')}`;
-
-    if (hourStopwatch > 0) {
-    // kalau stopwatch udh 1 jam ( 0 disini tu format sebelumnya kan per menit, sebelum 60 menitkan masih 00:59 menit, kan?)
-    // nah, biar format abis 59 menit ini ga balik ke 0 menit, makanya harus buat fungsi if(hourStopwatch > 0) ini
-    // Ini yang ngebuat tampilan stopwatch berubah jadi jam:menit:detik.ms
-    // hourStopwatch % 24 = sisa bagi 24 dan sama variabel hourStopwatch, biar kalau udh 23:59:59 ga berubah jadi 00:00:00
-    // tapi reset (00:00:00) dan menambah format hari (tp format jam belum dibuat dan kalau ga dibuat bakal balik ke menit 00)
-
-        formatStopwatch = `${String(hourStopwatch % 24).padStart(2, '0')}:${formatStopwatch}`;
-        // formatStopwatch kenapa variabelnya diulang diatas?
-        // Karena satu arahan dan tujuan.
-        // if itu kondisi tambahan dari arahan utama (variabel formatStopwatch)
-    }  
-    
-    // kenapa ga pakai else? ntar error jir.. soalnya macam jika A maka A wlw ada B tetep aja patokannya yg depan
+    // format stopwatch jika lebih dari 1 hari
     if (dayStopwatch > 0) {
-    // penjelasan kayak if (hourStopwatch > 0)
-
         formatStopwatch = `${String(dayStopwatch).padStart(2, '0')}:${formatStopwatch}`;
-        // kok gaada %?
-        // karena hari ga perlu di reset.
+    } 
 
-        return formatStopwatch;
-        // return `${formatStopwatch}<br><span class="mili-style fs-3">00.${miliStopwatch}</span>`;
-    } else {
-        return formatStopwatch;
-    }
-    
-    
-    // else {
-    //     // ms tetap di baris yang sama
-    //     return `${formatStopwatch}<span class="mili-intervalStopwatch">.${String(msStopwatch).padStart(2, '0')}</span>`;
-    // }
-
-    // displayStopwatch.innerHTML = `${formatStopwatch}`;
-    // displayMiliSecStopwatch.innerHTML = `00.${miliStopwatch}`;
-
-    // harus di return
-    // kalau gak, ga bakal keluar si angkanya
-    // coba aje kalau kagak percaya 🗿 
-    // return formatStopwatch;
+    return formatStopwatch;
 }
 
+// untuk menampilkan selisih waktu lap secara real-time saat stopwatch berjalan
 function updateLiveLapDiffDisplay() {
     if (laps.length === 0) {
         liveLapDiff.textContent = '';
@@ -267,22 +187,20 @@ function updateLiveLapDiffDisplay() {
         : 'text-warning');
 }
 
+// untuk indikator selisih waktu lap
 function formatTimeForLapDisplay(diffLapTime) {
     const sign = diffLapTime > 0 ? '+' : diffLapTime < 0 ? '-' : '';
     return sign + formatTime(Math.abs(diffLapTime));
 }
 
+// untuk menampilkan jam saat user klik start dan reset stopwatch
 function formatClockTime(date) {
     if(!date) return '--:--:--';
     return date.toLocaleTimeString('en-US', {hour12: false});
 }
 
-
-
 // notif muncul di layar dan bunyi
 function showNotif(message, type='info') {
-    
-    // if (laps.length > 2) return;
 
     const now = new Date(),
           realTime = now.toLocaleTimeString('en-US', {hour12: false}),
@@ -301,7 +219,7 @@ function showNotif(message, type='info') {
 
     setTimeout(() => {
         notifElement.remove();
-    }, 4000);
+    }, 5000);
 
 }
 
@@ -311,8 +229,8 @@ function checkLapNotif() {
 
     const currentLapDuration = elapsedTime - lastLapTime,
           lastLap = laps[0].lapTime,
-          fastestAllLap = (laps.length > 0 ? Math.min(...laps.map(l => l.lapTime)) : Infinity),
-          slowestAllLap = (laps.length > 0 ? Math.max(...laps.map(l => l.lapTime)) : -Infinity);
+          fastestAllLap = Math.min(...laps.map(l => l.lapTime)),
+          slowestAllLap = Math.max(...laps.map(l => l.lapTime));
 
     if (currentLapDuration > lastLap && !notifFlags.passedLastLap) {
         showNotif('Melewati lap sebelumnya!', 'warning');
@@ -328,7 +246,7 @@ function checkLapNotif() {
         if (currentLapDuration > fastestAllLap && !notifFlags.passedFastestLap) {
             showNotif('Melewati fastest!', 'info');
             notifFlags.passedFastestLap = true;
-        };
+        }
     }
 }
 
@@ -744,7 +662,8 @@ function saveState() {
         
         startClockTime,
         endClockTime,
-        running: !!stopwatchInterval
+        running: !!stopwatchInterval,
+        notifFlags
 
         // KENAPA KUDU !! soalnya biar akurat 
         // ibaratnya !! = sahabat deket nemplok tau baik-buruk kita dan null anak super ansos 🗿
@@ -778,6 +697,12 @@ function loadState() {
     // lastDurationLap = load.lastDurationLap;
     lapCount = load.lapCount;
     laps = load.laps || [];
+
+    notifFlags = load.notifFlags || {
+        passedLastLap: false,
+        passedFastestLap: false,
+        passedSlowestLap: false
+    };
 
     startClockTime = load.startClockTime ? new Date(load.startClockTime) : null;
     endClockTime = load.endClockTime ? new Date(load.endClockTime) : null;
