@@ -33,7 +33,6 @@ function loadComingSoonModal(namaFitur) {
                 if (countdown <= 0) {
                     clearInterval(interval);
                     comingSoonModal.hide();
-                    window.location.href = '../main/main-digilog.html';
                 }
             }, 1000);
         }
