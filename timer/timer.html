@@ -41,7 +41,7 @@
         <div class="flex-column justify-content-center align-items-center mx-3 mt-md-5">
 
             <!-- TITLE STOPWATCH -->
-            <h1 class="text-center fs-2 mt-1 custom-timer" id="timer-title" data-bs-toggle="modal" data-bs-target="#deskripsiModalDigiStopwatch">DIGI TIMER</h1>
+            <h1 class="text-center fs-2 mt-1 custom-timer" id="timer-title" data-bs-toggle="modal" data-bs-target="#deskripsiModalDigiStopwatch">TIMER</h1>
 
             <!-- INPUT MODE TIMER -->
             <div class="btn-group w-100 mt-4 mb-3 mode-toggle" role="group">
@@ -54,19 +54,19 @@
 
             <!-- INPUT NAMA TIMER -->
             <div class="nama-timer mb-3">
-                <label class="form-label" for="input-nama-timer">Nama Timer</label>
-                <input type="text" id="input-nama-timer" class="form-control" placeholder="Contoh: Meeting, Belajar Kimia, dan lainnya...">
+                <label class="form-label costume-style-timer" for="input-nama-timer">Nama Timer</label>
+                <input type="text" id="input-nama-timer" class="form-control" placeholder="Meeting, Belajar, dan lainnya...">
             </div>
 
             <!-- INPUT DURASI MODE BIASA -->
             <div class="mode-panel mb-3" id="section-mode-biasa">
-                <label class="form-label" for="durasi-detik">Durasi Timer</label>
+                <label class="form-label costume-style-timer" for="durasi-detik">Durasi Timer</label>
                 <div class="d-flex align-items-center gap-2">
-                    <input type="number" id="durasi-jam-timer-biasa" class="form-control text-center" min="0" max="23" placeholder="HH">
+                    <input type="number" id="durasi-jam-timer-biasa" class="form-control text-center costume-durasi" min="0" max="23" placeholder="HH">
                     <span>:</span>
-                    <input type="number" id="durasi-menit-timer-biasa" class="form-control text-center" min="0" max="59" placeholder="MM">
+                    <input type="number" id="durasi-menit-timer-biasa" class="form-control text-center costume-durasi" min="0" max="59" placeholder="MM">
                     <span>:</span>
-                    <input type="number" id="durasi-detik-timer-biasa" class="form-control text-center" min="0" max="59" placeholder="SS">
+                    <input type="number" id="durasi-detik-timer-biasa" class="form-control text-center costume-durasi" min="0" max="59" placeholder="SS">
                 </div>
             </div>
 
@@ -76,32 +76,34 @@
                 <!-- BUNGKUS POMODORO SETTING -->
                 <button type="button" id="toggle-setting-pomodoro-btn" class="btn btn-outline-info btn-sm w-100 d-flex justify-content-between align-items-center mb-3">
                     <span>POMODORO SETTING</span>
-                    <span id="toggle-setting-pomodoro-icon">^</span>
+                    <span id="toggle-setting-pomodoro-icon">
+                        <i class="fa-solid fa-caret-up"></i>
+                    </span>
                 </button>
 
                 <div id="pomodoro-settings">
 
                     <!-- INPUT FOKUS -->
                     <div class="mb-3">
-                        <label for="" class="form-label fw-bold fs-5 text-info">FOKUS</label>
+                        <label for="" class="form-label fw-bold fs-5">FOKUS</label>
                         <div class="d-flex align-items-center gap-2">
-                            <input type="number" name="" id="jam-pomodoro" class="form-control form-control-lg text-center" value='0' min="0" max="23" placeholder="HH">
+                            <input type="number" name="" id="jam-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='0' min="0" max="23" placeholder="HH">
                             <span>:</span>
-                            <input type="number" name="" id="menit-pomodoro" class="form-control form-control-lg text-center" value='25' min="0" max="59" placeholder="MM">
+                            <input type="number" name="" id="menit-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='25' min="0" max="59" placeholder="MM">
                             <span>:</span>
-                            <input type="number" name="" id="detik-pomodoro" class="form-control form-control-lg text-center" value='0' min="0" max="59" placeholder="SS">
+                            <input type="number" name="" id="detik-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='0' min="0" max="59" placeholder="SS">
                         </div>
                     </div>
 
                     <!-- INPUT ISTIRAHAT -->
                     <div class="mb-3">
-                        <label for="" class="form-label small text-warning-emphasis">ISTIRAHAT</label>
+                        <label for="" class="form-label fw-bold text-warning-emphasis fs-5">ISTIRAHAT</label>
                         <div class="d-flex align-items-center gap-2">
-                            <input type="number" name="" id="jam-istirahat" class="form-control form-control-sm text-center" value='0' min="0" max="23" placeholder="HH">
+                            <input type="number" name="" id="jam-istirahat" class="form-control form-control-sm text-center costume-durasi" value='0' min="0" max="23" placeholder="HH">
                             <span>:</span>
-                            <input type="number" name="" id="menit-istirahat" class="form-control form-control-sm text-center" value='5' min="0" max="59" placeholder="MM">
+                            <input type="number" name="" id="menit-istirahat" class="form-control form-control-sm text-center costume-durasi" value='5' min="0" max="59" placeholder="MM">
                             <span>:</span>
-                            <input type="number" name="" id="detik-istirahat" class="form-control form-control-sm text-center" value='0' min="0" max="59" placeholder="SS">
+                            <input type="number" name="" id="detik-istirahat" class="form-control form-control-sm text-center costume-durasi" value='0' min="0" max="59" placeholder="SS">
                         </div>
                     </div>
 
@@ -112,7 +114,7 @@
                             <!-- TARGET -->
                             <label for="" class="form-label">Jumlah Pengulangan</label>
                             <div class="input-group mb-2">
-                                <input type="number" name="" id="jumlah-pengulangan" class="form-control">
+                                <input type="number" name="" id="jumlah-pengulangan" class="form-control" placeholder="1">
                             </div>
 
                             <!-- TAK TERBATAS -->
@@ -127,9 +129,13 @@
             </div>
 
             <!-- TAMPILAN TIMER -->
-            <div class="d-none" id="running-timer">
+            <div class="d-none text-center py-2" id="running-timer">
                 <div class="timer-name-badge" id="running-timer-name">
                     <!-- UNTUK MENAMPILKAN NAMA TIMER -->
+                </div>
+
+                <div class="timer-mode-label" id="running-mode-label">
+                    <!-- UNTUK MENAMPILKAN MODE TIMER -->
                 </div>
 
                 <!-- TIMER -->
@@ -153,13 +159,13 @@
                 </button>
 
                 <!-- tombol pause -->
-                <button class="btn fs-4 btn-warning d-none p-2 w-md-auto btn-stopwatch-costume" id="pauseBtn">
+                <button class="btn fs-4 btn-warning d-none p-2 w-md-auto btn-timer-costume" id="pauseBtn">
                     <i class="fa-solid fa-pause d-inline d-md-none"></i>
                     <span class="d-none d-md-inline">PAUSE</span>
                 </button>
 
                 <!-- tombol reset -->
-                <button class="btn fs-4 btn-danger p-2 w-md-auto btn-stopwatch-costume d-none" id="resetBtn">
+                <button class="btn fs-4 btn-danger p-2 w-md-auto btn-timer-costume d-none" id="resetBtn">
                     <i class="fa-solid fa-redo d-inline d-md-none"></i>
                     <span class="d-none d-md-inline">RESET</span>
                 </button>
@@ -212,9 +218,7 @@
 
             <!-- note untuk pengguna -->
             <p class="session-note mt-2 mb-0" id="save-note">
-                Data tersimpan otomatis dalam perangkat dan tetap ada walau halaman di-refresh. 
-                <br>
-                Data tersimpan harian.
+                Data tersimpan otomatis dalam harian.
             </p>
         </div>
     </div>
@@ -228,32 +232,35 @@
 
                 <!-- HEADER MODAL -->
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title">PERHATIAN!</h5>
+                    <h5 class="modal-title">
+                        <i class="fa-solid fa-triangle-exclamation"></i> 
+                        PERHATIAN
+                    </h5>
                     <button type="button" class="btn-close btn-close-white" id="trigger-modal-close-x"></button>
                 </div>
 
                 <!-- PESAN MODAL -->
-                <div class="modal-body" id="trigger-modal-body">
+                <div class="modal-body mt-2 mb-2" id="trigger-modal-body">
                     <!-- isi pesan trigger -->
                 </div>
 
                 <!-- FOOTER MODAL -->
                 <div class="modal-footer border-secondary flex-column align-items-stretch p-0">
 
+                    <!-- PESAN AUTO CLOSE DAN HITUNG MUNDUR DALAM DETIK -->
+                    <div class="d-flex justify-content-between align-items-center px-3 py-1">
+                        <span class="small text-secondary">
+                            Otomatis tertutup dalam <span id="countdown-trigger-modal">10</span> detik
+                        </span>
+
+                        <!-- BTN CLOSE MANUAL -->
+                        <button type="button" class="btn btn-info btn-sm" id="modal-close-btn">Oke</button>
+                    </div>
+
                     <!-- PROGRESS BAR HITUNG MUNDUR AUTO CLOSE TRIGGER MODAL -->
                     <div class="progress" id="progress-bar-auto-close-trigger">
                         <div id="auto-close-bar" class="progress-bar bg-info" role="progressbar"></div>
                     </div>
-
-                    <!-- PESAN AUTO CLOSE DAN HITUNG MUNDUR DALAM DETIK -->
-                    <div class="d-flex jutify-content-between align-items-center px-3 py-2">
-                        <span class="small text-secondary">
-                            Otomatis tertutup dalam <span id="countdown-trigger-modal">10</span> detik
-                        </span>
-                    </div>
-
-                    <!-- BTN CLOSE MANUAL -->
-                    <button type="button" class="btn btn-info btn-sm" id="modal-close-btn">Oke, paham!</button>
                 </div>
             </div>
         </div>
