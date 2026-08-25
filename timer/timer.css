@@ -1,0 +1,24 @@
+#timer-title, .costume-durasi, #display-timer {
+    font-family: 'Oxanium', monospace;
+}
+
+/* tampilan timer */
+#display-timer {
+    font-size: clamp(2rem, 9vw, 7rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 1rem 0;
+    color: #38bd38;
+}
+
+/* tampilan nama timer */
+.timer-name-badge {
+    font-size: clamp(1rem, 4vw, 3rem) !important;
+    color: #94a3b8;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 0;
+}
