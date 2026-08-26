@@ -294,14 +294,6 @@ b {
     font-weight: 600;
 }
 
-/* tbody {
-    font-size: clamp(0.7rem, 1vw, 1.1rem) !important;
-} */
-
-/* .table-lap tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
-} */
-
 .fastest-lap-row, .fastest-lap-row td, .fastest-lap-row strong, .fastest-lap-row small {
     color: #198753;
 }
