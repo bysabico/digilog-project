@@ -283,10 +283,10 @@ b {
 
 /* table-lap */
 
-.table-lap th, .table-lap td {
+.table-lap th, .table-lap td, tbody {
     padding: 8px 12px;
     text-align: center;
-    font-size: 1rem;
+    font-size: clamp(1.1rem, 3vw, 1.6rem) !important;
 }
 
 .table-lap thead {
@@ -294,9 +294,13 @@ b {
     font-weight: 600;
 }
 
-.table-lap tbody tr:nth-child(even) {
+/* tbody {
+    font-size: clamp(0.7rem, 1vw, 1.1rem) !important;
+} */
+
+/* .table-lap tbody tr:nth-child(even) {
     background-color: #f8f9fa;
-}
+} */
 
 .fastest-lap-row, .fastest-lap-row td, .fastest-lap-row strong, .fastest-lap-row small {
     color: #198753;
@@ -304,4 +308,11 @@ b {
 
 .slowest-lap-row, .slowest-lap-row td, .slowest-lap-row strong, .slowest-lap-row small {
     color: #ef4444;
+}
+
+@media (max-width: 576px) {
+    .table-lap th, .table-lap td {
+        padding: 6px 4px;
+        font-size: 0.75rem !important;
+    }
 }
