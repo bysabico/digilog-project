@@ -43,88 +43,90 @@
             <!-- TITLE STOPWATCH -->
             <h1 class="text-center fs-2 mt-1 custom-timer" id="timer-title" data-bs-toggle="modal" data-bs-target="#deskripsiModalDigiStopwatch">TIMER</h1>
 
-            <!-- INPUT MODE TIMER -->
-            <div class="btn-group w-100 mt-4 mb-3 mode-toggle" role="group">
-                <input type="radio" id="mode-timer-biasa" class="btn-check" name="mode-radio" checked>
-                <label for="mode-timer-biasa" class="btn btn-outline-info"> TIMER </label>
-                
-                <input type="radio" id="mode-timer-pomodoro" class="btn-check" name="mode-radio">
-                <label for="mode-timer-pomodoro" class="btn btn-outline-info"> POMODORO </label>
-            </div>
-
-            <!-- INPUT NAMA TIMER -->
-            <div class="nama-timer mb-3">
-                <label class="form-label costume-style-timer" for="input-nama-timer">Nama Timer</label>
-                <input type="text" id="input-nama-timer" class="form-control" placeholder="Meeting, Belajar, dan lainnya...">
-            </div>
-
-            <!-- INPUT DURASI MODE BIASA -->
-            <div class="mode-panel mb-3" id="section-mode-biasa">
-                <label class="form-label costume-style-timer" for="durasi-detik">Durasi Timer</label>
-                <div class="d-flex align-items-center gap-2">
-                    <input type="number" id="durasi-jam-timer-biasa" class="form-control text-center costume-durasi" min="0" max="23" placeholder="HH">
-                    <span>:</span>
-                    <input type="number" id="durasi-menit-timer-biasa" class="form-control text-center costume-durasi" min="0" max="59" placeholder="MM">
-                    <span>:</span>
-                    <input type="number" id="durasi-detik-timer-biasa" class="form-control text-center costume-durasi" min="0" max="59" placeholder="SS">
+            <div id="inputs-section">
+                <!-- INPUT MODE TIMER -->
+                <div class="btn-group w-100 mt-4 mb-3 mode-toggle" role="group">
+                    <input type="radio" id="mode-timer-biasa" class="btn-check" name="mode-radio" checked>
+                    <label for="mode-timer-biasa" class="btn btn-outline-info"> TIMER </label>
+                    
+                    <input type="radio" id="mode-timer-pomodoro" class="btn-check" name="mode-radio">
+                    <label for="mode-timer-pomodoro" class="btn btn-outline-info"> POMODORO </label>
                 </div>
-            </div>
 
-            <!-- INPUT DURASI MODE POMODORO -->
-            <div class="mode-panel mb-3 d-none" id="section-mode-pomodoro">
+                <!-- INPUT NAMA TIMER -->
+                <div class="nama-timer mb-3">
+                    <label class="form-label costume-style-timer" for="input-nama-timer">Nama Timer</label>
+                    <input type="text" id="input-nama-timer" class="form-control" placeholder="Meeting, Belajar, dan lainnya...">
+                </div>
 
-                <!-- BUNGKUS POMODORO SETTING -->
-                <button type="button" id="toggle-setting-pomodoro-btn" class="btn btn-outline-info btn-sm w-100 d-flex justify-content-between align-items-center mb-3">
-                    <span>POMODORO SETTING</span>
-                    <span id="toggle-setting-pomodoro-icon">
-                        <i class="fa-solid fa-caret-up"></i>
-                    </span>
-                </button>
-
-                <div id="pomodoro-settings">
-
-                    <!-- INPUT FOKUS -->
-                    <div class="mb-3">
-                        <label for="" class="form-label fw-bold fs-5">FOKUS</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="number" name="" id="jam-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='0' min="0" max="23" placeholder="HH">
-                            <span>:</span>
-                            <input type="number" name="" id="menit-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='25' min="0" max="59" placeholder="MM">
-                            <span>:</span>
-                            <input type="number" name="" id="detik-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='0' min="0" max="59" placeholder="SS">
-                        </div>
+                <!-- INPUT DURASI MODE BIASA -->
+                <div class="mode-panel mb-3" id="section-mode-biasa">
+                    <label class="form-label costume-style-timer" for="durasi-detik">Durasi Timer</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="number" id="durasi-jam-timer-biasa" class="form-control text-center costume-durasi" min="0" max="23" placeholder="HH">
+                        <span>:</span>
+                        <input type="number" id="durasi-menit-timer-biasa" class="form-control text-center costume-durasi" min="0" max="59" placeholder="MM">
+                        <span>:</span>
+                        <input type="number" id="durasi-detik-timer-biasa" class="form-control text-center costume-durasi" min="0" max="59" placeholder="SS">
                     </div>
+                </div>
 
-                    <!-- INPUT ISTIRAHAT -->
-                    <div class="mb-3">
-                        <label for="" class="form-label fw-bold text-warning-emphasis fs-5">ISTIRAHAT</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="number" name="" id="jam-istirahat" class="form-control form-control-sm text-center costume-durasi" value='0' min="0" max="23" placeholder="HH">
-                            <span>:</span>
-                            <input type="number" name="" id="menit-istirahat" class="form-control form-control-sm text-center costume-durasi" value='5' min="0" max="59" placeholder="MM">
-                            <span>:</span>
-                            <input type="number" name="" id="detik-istirahat" class="form-control form-control-sm text-center costume-durasi" value='0' min="0" max="59" placeholder="SS">
-                        </div>
-                    </div>
+                <!-- INPUT DURASI MODE POMODORO -->
+                <div class="mode-panel mb-3 d-none" id="section-mode-pomodoro">
 
-                    <!-- INPUT JUMLAH PENGULANGAN -->
-                    <div class="row g-2">
-                        <div class="col-12">
+                    <!-- BUNGKUS POMODORO SETTING -->
+                    <button type="button" id="toggle-setting-pomodoro-btn" class="btn btn-outline-info btn-sm w-100 d-flex justify-content-between align-items-center mb-3">
+                        <span>POMODORO SETTING</span>
+                        <span>
+                            <i id="toggle-setting-pomodoro-icon" class="fa-solid fa-caret-up"></i>
+                        </span>
+                    </button>
 
-                            <!-- TARGET -->
-                            <label for="" class="form-label">Jumlah Pengulangan</label>
-                            <div class="input-group mb-2">
-                                <input type="number" name="" id="jumlah-pengulangan" class="form-control" placeholder="1">
-                            </div>
+                    <div id="pomodoro-settings">
 
-                            <!-- TAK TERBATAS -->
-                            <div class="form-check">
-                                <input type="checkbox" name="" id="unlimited-pengulangan" class="form-check-input">
-                                <label for="unlimited-pengulangan" class="form-check-label">Pengulangan Tanpa Batas</label>
+                        <!-- INPUT FOKUS -->
+                        <div class="mb-3">
+                            <label for="" class="form-label fw-bold fs-5">FOKUS</label>
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="number" name="" id="jam-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='0' min="0" max="23" placeholder="HH">
+                                <span>:</span>
+                                <input type="number" name="" id="menit-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='25' min="0" max="59" placeholder="MM">
+                                <span>:</span>
+                                <input type="number" name="" id="detik-pomodoro" class="form-control form-control-lg text-center costume-durasi" value='0' min="0" max="59" placeholder="SS">
                             </div>
                         </div>
-                    </div>
 
+                        <!-- INPUT ISTIRAHAT -->
+                        <div class="mb-3">
+                            <label for="" class="form-label fw-bold text-warning-emphasis fs-5">ISTIRAHAT</label>
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="number" name="" id="jam-istirahat" class="form-control form-control-sm text-center costume-durasi" value='0' min="0" max="23" placeholder="HH">
+                                <span>:</span>
+                                <input type="number" name="" id="menit-istirahat" class="form-control form-control-sm text-center costume-durasi" value='5' min="0" max="59" placeholder="MM">
+                                <span>:</span>
+                                <input type="number" name="" id="detik-istirahat" class="form-control form-control-sm text-center costume-durasi" value='0' min="0" max="59" placeholder="SS">
+                            </div>
+                        </div>
+
+                        <!-- INPUT JUMLAH PENGULANGAN -->
+                        <div class="row g-2">
+                            <div class="col-12">
+
+                                <!-- TARGET -->
+                                <label for="" class="form-label">Jumlah Pengulangan</label>
+                                <div class="input-group mb-2">
+                                    <input type="number" name="" id="jumlah-pengulangan" class="form-control" placeholder="1">
+                                </div>
+
+                                <!-- TAK TERBATAS -->
+                                <div class="form-check">
+                                    <input type="checkbox" name="" id="unlimited-pengulangan" class="form-check-input">
+                                    <label for="unlimited-pengulangan" class="form-check-label">Pengulangan Tanpa Batas</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 

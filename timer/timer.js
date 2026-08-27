@@ -31,7 +31,8 @@ fetch ('../footer/footer-digilog.html')
 })
 
 // element
-const modeBiasaRadio = document.getElementById('mode-timer-biasa'),
+const inputsSection = document.getElementById('inputs-section'),
+      modeBiasaRadio = document.getElementById('mode-timer-biasa'),
       modePomodoroRadio = document.getElementById('mode-timer-pomodoro'),
       namaTimer = document.getElementById('input-nama-timer'),
       sectionModeBiasa = document.getElementById('section-mode-biasa'),
@@ -84,7 +85,7 @@ const autoCloseSecondTime = 10000;
 toggleSettingPomodoroBtn.addEventListener('click', () => {
     const isHidden = pomodoroSettings.classList.contains('d-none');
     pomodoroSettings.classList.toggle('d-none');
-    toggleSettingPomodoroIcon.textContent = isHidden ? '^' : 'v';
+    toggleSettingPomodoroIcon.className = isHidden ? 'fa-solid fa-caret-up' : 'fa-solid fa-caret-down';
 });
 
 function showTriggerModal(message) {
@@ -146,7 +147,7 @@ let mode = 'biasa',
     reminingSeconds = 0,
     intervalTimer = null,
     currentName = '',
-    currentPhase = null,   // 'fokus' | 'break' | null
+    currentPhase = null,
     currentRepeat = 1,
     totalRepeat = 1,
     focusDuration = 0,
@@ -183,7 +184,7 @@ function playBeep(frequency, duration, volume =0.15, type ='sine') {
         gainNode.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
         oscillator.stop(ctx.currentTime + duration);
     } catch (error) {
-        // kalau error = diem aje
+        // kalau error = diem
     }
 }
 
@@ -192,11 +193,11 @@ function playTickSound() {
 }
 
 function playAlarmSound() {
-    const ctx = getAudioCtx();
+    const beepTimes = [0, 0.4, 0.8, 1.2, 1.6, 2.0];
 
-    [0, 0.3, 0.6, 0.9].forEach((delay, i) => {
+    beepTimes.forEach((delay, i) => {
         setTimeout(() => {
-            playBeep(i % 2 === 0 ? 1046 : 784, 0.25, 0.18, 'triangle'), delay * 1000;
+            playBeep(i % 2 === 0 ? 1046 : 784, 0.45, 0.35, 'triangle'), delay * 1000;
         })
     })
 }
@@ -344,13 +345,15 @@ function renderResults() {
 
 // 
 function resetTampilan() {
+    inputsSection.classList.remove('d-none');
+    runningTimer.classList.add('d-none');
     runningTimerName.classList.add('d-none');
     startTimerBtn.classList.remove('d-none');
     pauseTimerBtn.classList.add('d-none');
     resetTimerBtn.classList.add('d-none');
     if(mode === 'pomodoro') {
         pomodoroSettings.classList.remove('d-none');
-        toggleSettingPomodoroIcon.textContent = '^';
+        toggleSettingPomodoroIcon.className = 'fa-solid fa-caret-up';
     }
     namaTimer.disabled = false;
     durasiJamTimer.disabled = false;
@@ -510,17 +513,19 @@ startTimerBtn.addEventListener('click', async () => {
     pauseTimerBtn.classList.remove('d-none');
     resetTimerBtn.classList.remove('d-none');
 
+    inputsSection.classList.add('d-none');
     runningTimer.classList.remove('d-none');
     runningTimerName.classList.remove('d-none');
 
     if(mode === 'pomodoro') {
         pomodoroSettings.classList.add('d-none');
-        toggleSettingPomodoroIcon.textContent = 'v';
+        toggleSettingPomodoroIcon.className = 'fa-solid fa-caret-up';
     }
 
     statusText.textContent = mode === 'pomodoro'
-        ? `Waktunya belajar, (Siklus ${currentRepeat}/${formatRepeat(totalRepeat)})`
-        : `Timer "${currentName}" dimulai!`;
+        ? `Fokus siklus ${currentRepeat}/${formatRepeat(totalRepeat)})`
+        : `${currentName} sedang berjalan...`;
+        // : `Timer "${currentName}" dimulai!`;
     startTimerInterval();
 })
 
