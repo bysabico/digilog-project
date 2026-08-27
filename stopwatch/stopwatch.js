@@ -254,27 +254,18 @@ function checkLapNotif() {
 function pauseStopwatch() {
 
     clearInterval(stopwatchInterval);
-    // clearInterval = method js buat stop stopwatch yang lagi jalanin setInterval
-    // stopwatchInterval as parameter biar tau saklar (variabel) yang mau ditargetin
 
     stopwatchInterval = null;
-    // makanya.. 
-    // abis itu stopwatchInterval di-null-kan (dihilangin) karena pas start stopwatchInterval ada nilainya (waktu yag berjalan)
-    // karena klik pause (dipaksa stop 😔)
 
-    // sama kayak penjelasan func startStopwatch()
     displayStopwatch.classList.remove('running');
     displayStopwatch.classList.add('fokus');
     for (let item of customStopwatch) { 
         item.classList.remove('tampilanSamarStopwatch'); 
     }
 
-    // button yang muncul dan yg tidak
     pauseBtn.classList.add('d-none');
     startBtn.classList.remove('d-none');
 
-    // tombol lap nonaktif atau gak bisa dipencet
-    // dimunculin biar user tw bisa lap #muk-pamer
     lapBtn.disabled = true;
 
     saveState();
@@ -284,8 +275,7 @@ function pauseStopwatch() {
 function resetStopwatch() {
 
     showResult();
-    // klik resetStopwatch => laporan hasilnya pakai pop up (modal bootstrap)
-    // biar bisa #pamer WKWKW 😋
+
 }
 
 // = SHOW RESULT =
