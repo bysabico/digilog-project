@@ -335,8 +335,8 @@ function renderResults() {
             <td>${result.name}</td>
             <td><span class='badge ${result.mode === 'pomodoro' ? 'badge-mode-belajar' : 'badge-mode-biasa'}'>${result.mode}</span></td>
             <td>${result.phaseLabel}</td>
-            <td>${result.target}</td>
-            <td>${result.used}</td>
+            <td>${formatTime(result.target)}</td>
+            <td>${formatTime(result.used)}</td>
             <td><span class='badge ${result.status === 'selesai' ? 'badge-mode-selesai' : 'badge-mode-reset'}'>${result.status}</span></td>
             <td>${result.time}</td>
         </tr>
@@ -398,7 +398,7 @@ async function tick() {
     playAlarmSound();
 
     if (mode === 'biasa') {
-        await addResult(currentName, '-', '-', totalSeconds, totalSeconds, 'Selesai');
+        await addResult(currentName, 'Timer', '-', totalSeconds, totalSeconds, 'Selesai');
         statusText.textContent = `Timer "${currentName}" selesai!`;
         resetTampilan();
         return;
@@ -510,8 +510,16 @@ startTimerBtn.addEventListener('click', async () => {
     modePomodoroRadio.disabled = true;
 
     startTimerBtn.classList.add('d-none');
+    startTimerBtn.classList.remove('w-100');
+    startTimerBtn.classList.add('w-50');
+
     pauseTimerBtn.classList.remove('d-none');
+    pauseTimerBtn.classList.remove('w-100');
+    pauseTimerBtn.classList.add('w-50');
+
     resetTimerBtn.classList.remove('d-none');
+    resetTimerBtn.classList.remove('w-100');
+    resetTimerBtn.classList.add('w-50');
 
     inputsSection.classList.add('d-none');
     runningTimer.classList.remove('d-none');
@@ -529,7 +537,17 @@ startTimerBtn.addEventListener('click', async () => {
     startTimerInterval();
 })
 
-resetTimerBtn.addEventListener('click', () => {
+resetTimerBtn.addEventListener('click', async () => {
+    clearInterval(intervalTimer);
+    const used = totalSeconds - reminingSeconds;
+
+    if (mode === 'biasa') {
+        await addResult(currentName, 'Timer', '-', totalSeconds, used, 'Direset');
+    } else {
+        const phaseLabel = currentPhase === 'fokus' ? 'Pomodoro' : 'Istirahat';
+        await addResult(currentName, 'Pomodoro', phaseLabel, totalSeconds, used, 'Direset');
+    }
+
     resetTampilan();
     statusText.textContent = '';
     displayTimer.textContent = '00:00';
@@ -540,10 +558,12 @@ pauseTimerBtn.addEventListener('click', () => {
     if (intervalTimer) {
         clearInterval(intervalTimer);
         intervalTimer = null;
-        pauseTimerBtn.textContent = 'Lanjut';
+        startTimerBtn.classList.remove('d-none');
+        pauseTimerBtn.classList.add('d-none');
     } else {
         intervalTimer = setInterval(tick, 1000);
-        pauseTimerBtn.textContent = 'Jeda';
+        startTimerBtn.classList.add('d-none');
+        pauseTimerBtn.classList.remove('d-none');
     }
 });
 
